@@ -35,6 +35,6 @@ public class RockMovements implements MovementGenerator{
 
     @Override
     public String getType() {
-        return "Rock";
+        return "Rook";
     }
 }

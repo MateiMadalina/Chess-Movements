@@ -22,7 +22,7 @@ class MovementEngineTest {
                 of(List.of("0,7"), new Position(0, 6), "Pawn"),
                 of(List.of(), new Position(0, 7), "Pawn"),
 
-                of(List.of("0,1", "1,1", "1,0"), new Position(0, 0), "King"),
+                of(List.of("1,0", "0,1", "1,1"), new Position(0, 0), "King"),
                 of(List.of("0,0", "1,0", "2,0", "0,1", "2,1", "0,2", "1,2", "2,2"), new Position(1, 1), "King"),
                 of(List.of("6,6", "7,6", "6,7"), new Position(7, 7), "King"),
 
@@ -76,10 +76,10 @@ class MovementEngineTest {
     void generate(List<String> combinations, Position current, String type) {
         List<Position> expected = parse(combinations);
         List<MovementGenerator> movementGenerators = List.of(new PawnGenerator(),new KingGenerator(),
-                new KnightGenerator(), new BishopGenerator(), new RockMovements(),new QueenGenerator());
+                new KnightGenerator(), new BishopGenerator(), new RockMovements(), new QueenGenerator());
         MovementEngine movementEngine = new MovementEngine(movementGenerators,boundaries);
-        List<Position> actual = movementEngine.generate(type,current);
-        assertEquals(expected, actual);
-
+        List<Position> result = movementEngine.generate(type,current);
+        System.out.println(result);
+        assertEquals(expected,result);
     }
 }
