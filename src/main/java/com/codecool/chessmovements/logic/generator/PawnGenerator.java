@@ -14,6 +14,6 @@ public class PawnGenerator implements MovementGenerator{
 
     @Override
     public String getType() {
-        return "pawn";
+        return "Pawn";
     }
 }
