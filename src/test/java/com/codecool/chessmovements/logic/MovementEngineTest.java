@@ -1,10 +1,7 @@
 package com.codecool.chessmovements.logic;
 
 import com.codecool.chessmovements.data.Position;
-import com.codecool.chessmovements.logic.generator.KingGenerator;
-import com.codecool.chessmovements.logic.generator.KnightGenerator;
-import com.codecool.chessmovements.logic.generator.MovementGenerator;
-import com.codecool.chessmovements.logic.generator.PawnGenerator;
+import com.codecool.chessmovements.logic.generator.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -36,10 +33,11 @@ class MovementEngineTest {
                 of(List.of("1,1", "2,2", "3,3", "4,4", "5,5", "6,6", "7,7"), new Position(0, 0), "Bishop"),
                 of(List.of("1,6", "2,5", "3,4", "4,3", "5,2", "6,1", "7,0"), new Position(0, 7), "Bishop"),
                 of(List.of(
-                        "0,0", "1,1", "2,2",
-                        "4,2", "5,1", "6,0",
+                        "4,4", "5,5", "6,6", "7,7",
                         "2,4", "1,5", "0,6",
-                        "4,4", "5,5", "6,6","7,7"
+                        "2,2", "1,1", "0,0",
+                        "4,2", "5,1", "6,0"
+
                 ), new Position(3, 3), "Bishop"),
 
                 of(List.of(
@@ -76,9 +74,9 @@ class MovementEngineTest {
     @MethodSource("parameters")
     void generate(List<String> combinations, Position current, String type) {
      //   List<Position> expected = parse(combinations);
-        List<MovementGenerator> movementGenerators = List.of(new PawnGenerator(),new KingGenerator(), new KnightGenerator());
+        List<MovementGenerator> movementGenerators = List.of(new PawnGenerator(),new KingGenerator(), new KnightGenerator(), new BishopGenerator());
         MovementEngine movementEngine = new MovementEngine(movementGenerators,boundaries);
-        List<Position> result = movementEngine.generate("Knight",new Position(3,3));
+        List<Position> result = movementEngine.generate("Bishop",new Position(0,0));
         System.out.println(result);
         assertEquals(List.of("1,2", "1,4", "2,1", "4,1", "5,2", "5,4", "2,5", "4,5"),result);
     }
