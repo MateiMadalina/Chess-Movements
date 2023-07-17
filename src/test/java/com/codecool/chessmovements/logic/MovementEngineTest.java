@@ -1,6 +1,8 @@
 package com.codecool.chessmovements.logic;
 
 import com.codecool.chessmovements.data.Position;
+import com.codecool.chessmovements.logic.generator.MovementGenerator;
+import com.codecool.chessmovements.logic.generator.PawnGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
 class MovementEngineTest {
@@ -70,8 +73,11 @@ class MovementEngineTest {
     @ParameterizedTest
     @MethodSource("parameters")
     void generate(List<String> combinations, Position current, String type) {
-        List<Position> expected = parse(combinations);
-
-        // To be implemented
+     //   List<Position> expected = parse(combinations);
+        List<MovementGenerator> movementGenerators = List.of(new PawnGenerator());
+        MovementEngine movementEngine = new MovementEngine(movementGenerators,boundaries);
+        List<Position> result = movementEngine.generate("pawn",new Position(0,0));
+        System.out.println(result);
+        assertEquals(List.of(List.of("0, 1")),result);
     }
 }
