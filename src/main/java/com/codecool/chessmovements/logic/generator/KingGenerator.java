@@ -12,7 +12,6 @@ public class KingGenerator implements MovementGenerator{
                                 new Position(current.x(), current.y() -1),
                                 new Position(current.x() + 1, current.y() -1),
                                 new Position(current.x() - 1, current.y()),
-                                new Position(current.x(), current.y()),
                                 new Position(current.x() + 1, current.y()),
                                 new Position(current.x() - 1, current.y() + 1),
                                 new Position(current.x(), current.y() + 1),

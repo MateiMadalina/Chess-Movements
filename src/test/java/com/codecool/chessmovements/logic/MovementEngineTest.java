@@ -2,6 +2,7 @@ package com.codecool.chessmovements.logic;
 
 import com.codecool.chessmovements.data.Position;
 import com.codecool.chessmovements.logic.generator.KingGenerator;
+import com.codecool.chessmovements.logic.generator.KnightGenerator;
 import com.codecool.chessmovements.logic.generator.MovementGenerator;
 import com.codecool.chessmovements.logic.generator.PawnGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -75,10 +76,10 @@ class MovementEngineTest {
     @MethodSource("parameters")
     void generate(List<String> combinations, Position current, String type) {
      //   List<Position> expected = parse(combinations);
-        List<MovementGenerator> movementGenerators = List.of(new PawnGenerator(),new KingGenerator());
+        List<MovementGenerator> movementGenerators = List.of(new PawnGenerator(),new KingGenerator(), new KnightGenerator());
         MovementEngine movementEngine = new MovementEngine(movementGenerators,boundaries);
-        List<Position> result = movementEngine.generate("King",new Position(1,1));
+        List<Position> result = movementEngine.generate("Knight",new Position(3,3));
         System.out.println(result);
-        assertEquals(List.of(List.of("0, 0", "1, 0", "2, 0", "0, 1", "2, 1", "0, 2", "1, 2", "2, 2")),result);
+        assertEquals(List.of("1,2", "1,4", "2,1", "4,1", "5,2", "5,4", "2,5", "4,5"),result);
     }
 }
